@@ -12,6 +12,7 @@ std::string request_filename(const srcml_request& request) {
 
     // TODO: determine the proper filename from the request
     std::string filename;
+	filename = request.local_filename;
 
     return filename;
 }
@@ -21,6 +22,7 @@ std::string request_language(const srcml_request& request, const std::string& fi
 
     // TODO: determine the proper filename from the request
     std::string language;
+	language = get_language_from_filename(filename);
 
     return language;
 }

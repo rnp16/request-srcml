@@ -40,6 +40,12 @@ int main() {
         assert(request_filename(request) == "test.cpp");
         assert(request_language(request, "test.cpp") == "C++");
     }
+    /*The language can be explicitly given as an option and this supersedes all other language settings*/
+    {
+        srcml_request request = {"", "test.cpp", "data", "C++"};
+        assert(request_filename(request) == "test.cpp");
+        assert(request_language(request, "test.cpp") == "C++");
+    }
 
     return 0;
 }

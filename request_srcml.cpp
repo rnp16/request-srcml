@@ -12,7 +12,24 @@ std::string request_filename(const srcml_request& request) {
 
     // TODO: determine the proper filename from the request
     std::string filename;
-	filename = request.local_filename;
+    if(request.option_filename != "")
+    {
+        filename = request.option_filename;
+        return filename;
+    }
+
+    if(request.entry_filename == "data")
+    {
+        filename = request.local_filename;
+        return filename;
+    }
+    else if(request.local_filename != "" && request.entry_filename != "")
+    {
+        filename = request.entry_filename;
+	return filename;
+    }
+    else
+        filename = "";
 
     return filename;
 }
@@ -22,7 +39,12 @@ std::string request_language(const srcml_request& request, const std::string& fi
 
     // TODO: determine the proper filename from the request
     std::string language;
-	language = get_language_from_filename(filename);
+    if(request.option_language == "")
+    {
+        language = get_language_from_filename(filename);
+    }
+    else
+        language = request.option_language;
 
     return language;
 }

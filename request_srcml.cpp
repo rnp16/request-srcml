@@ -12,13 +12,19 @@ std::string request_filename(const srcml_request& request) {
 
     // TODO: determine the proper filename from the request
     std::string filename;
-	if(request.local_filename != "" && request.entry_filename != "")
-	{
-		filename = request.entry_filename;
-		return filename;
-	}
-	else 
-		filename = "";
+    if(request.option_filename != "")
+    {
+       	filename = request.option_filename;
+       	return filename;
+    }
+
+    if(request.local_filename != "" && request.entry_filename != "")
+    {
+	 filename = request.entry_filename;
+	 return filename;
+     }
+     else
+	 filename = "";
 
     return filename;
 }

@@ -20,6 +20,11 @@ std::string request_filename(const srcml_request& request) {
 
     if(request.entry_filename == "data")
     {
+        if(request.local_filename == "-")
+        {
+            filename = "";
+            return filename;
+        }
         filename = request.local_filename;
         return filename;
     }

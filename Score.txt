@@ -1,0 +1,32 @@
+Score: 82
+
+* Left TODO messages -3
+* Does not compile: It is std::cerr, not std::err -10
+* Messy indentation -2
+* Sometimes you return the filename, sometimes you set it. Decide which way and stick to it.
+* Why use a block for the then part, and not a block for the else part? Especially since each (then, else) only contain one statement?
+* Error messages do not follow those in the assignment -3
+
+Build and test results:
+g++ -c request_srcml_t.cpp
+g++ -c request_srcml.cpp
+request_srcml.cpp:63:8: error: no member named 'err' in namespace 'std'; did you mean 'cerr'?
+                std::err << "Need to declare a language" << "\n";
+                ~~~~~^~~
+                     cerr
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iostream:57:33: note: 'cerr' declared here
+extern _LIBCPP_FUNC_VIS ostream cerr;
+                                ^
+request_srcml.cpp:69:8: error: no member named 'err' in namespace 'std'; did you mean 'cerr'?
+                std::err << "This is not supported" << "\n";
+                ~~~~~^~~
+                     cerr
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/iostream:57:33: note: 'cerr' declared here
+extern _LIBCPP_FUNC_VIS ostream cerr;
+                                ^
+2 errors generated.
+make: *** [request_srcml.o] Error 1
+
+My request_srcml_t.cpp file used for testing your code, along with several implementations of request_filename() and request_language(), can be found at:
+
+	https://gist.github.com/mlcollard/7e499f064a3b4d637b5369fae08cb201
